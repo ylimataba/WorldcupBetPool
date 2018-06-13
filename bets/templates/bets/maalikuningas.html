@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title%}
+Veikkaa
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid bg-1 text-center">
+    <form action="" method="post">
+       {% csrf_token %}
+       <div class="container">
+           <h1>Maalikuningas</h1>
+           <select name="maalikuningas">
+           {% for player in players %}
+           <option value="{{ player.id }}">{{ player.team.name }} - {{ player.name }} ({{ player.position }})</option>
+           {% endfor %}
+           </select>
+       </div>
+       <input type="submit" class="btn-default" value="TALLENNA VEIKKAUS">
+   </form>
+</div>
+{% endblock %}

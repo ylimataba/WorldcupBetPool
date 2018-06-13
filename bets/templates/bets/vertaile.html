@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title%}
+Veikkaa
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid bg-1 text-center">
+        <h1>Lohkovaiheen pelit</h1>
+        {% for match in matches %}
+        <div class="container">
+           <div class="row bg-2">
+               <div class="col-xs-4">
+                   {{ match.date }}
+               </div>
+               <div class="col-xs-4">
+                   {{ match.homeTeam.name }} - {{ match.awayTeam.name }}
+               </div>
+               <div class="col-xs-4">
+                   Tulos:{% if match.hasScore %} {{ match.score.home }} - {{ match.score.away }} {% endif %}
+               </div>
+           </div>
+           {% for bet in lohko %}
+           {% if bet.match == match %}
+           <div class="row bg-2">
+               <div class="col-xs-4">
+                   {{ bet.gambler.user.username }}
+               </div>
+               <div class="col-xs-4">
+                   Veikkaus: {{ bet.bet }}
+               </div>
+               <div class="col-xs-4">
+                   Pisteet:{% if match.hasScore %} {{ bet.getPoints }} {% endif %}
+               </div>
+            </div>
+            {% endif %}
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <h1>Mitalistit</h1>
+        <div class="container">
+            {% for bet in kolmikko %}    
+            <div class="row bg-2 text-center">
+                <div class="col-xs-6">
+                    {{ bet.gambler.user.username }}
+                </div>
+                <div class="col-xs-2">
+                    1.{{ bet.first.name }}
+                </div>
+                <div class="col-xs-2">
+                    2.{{ bet.second.name }}
+                </div>
+                <div class="col-xs-2">
+                    3.{{ bet.third.name }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <h1>Maalikuningas</h1>
+        <div class="container">
+            {% for bet in kuningas %}    
+            <div class="row bg-2 text-center">
+                <div class="col-xs-4">
+                    {{ bet.gambler.user.username }}
+                </div>
+                <div class="col-xs-4">
+                    {{ bet.goalKing.name }}
+                </div> 
+                <div class="col-xs-4">
+                    Maalit: {{ bet.goalKing.goals }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+</div>
+{% endblock %}

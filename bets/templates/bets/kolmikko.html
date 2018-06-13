@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title%}
+Veikkaa
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid bg-1 text-center">
+    <form action="" method="post">
+       {% csrf_token %}
+       <div class="container">
+           <h1>Voittaja</h1>
+           <select name="voittaja">
+           {% for team in teams %}
+           <option value="{{ team.id }}">{{ team.name }}</option>
+           {% endfor %}
+           </select>
+       </div>
+       <div class="container">
+           <h1>Toinen</h1>
+           <select name="toinen">
+           {% for team in teams %}
+           <option value="{{ team.id }}">{{ team.name }}</option>
+           {% endfor %}
+           </select>
+       </div>
+       <div class="container">
+           <h1>Kolmas</h1>
+           <select name="kolmas">
+           {% for team in teams %}
+           <option value="{{ team.id }}">{{ team.name }}</option>
+           {% endfor %}
+           </select>
+       </div>
+        <input type="submit" class="btn-default" value="TALLENNA VEIKKAUS">
+   </form>
+</div>
+{% endblock %}

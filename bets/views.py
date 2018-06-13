@@ -70,10 +70,18 @@ def kolmikko(request):
 @login_required(login_url='/login')
 def vertaile(request):
     template = 'bets/vertaile.html'
-    matches = Match.objects.all()[:48]
-    lohko = Bet1X2.objects.all()
-    kuningas = GoalKingBet.objects.all()
-    kolmikko = BestThree.objects.all()
+    matches = []
+    lohko = []
+    kuningas = []
+    kolmikko = []
+    if hasattr(request.user, gambler):
+        if request.user.gambler.bet1x2_set.all().exists():
+            matches = Match.objects.all()[:48]
+            lohko = Bet1X2.objects.all()
+        if request.user.gambler.goalkingbet_set.all().exists():
+            kuningas = GoalKingBet.objects.all()
+        if request.user.gambler.bestthree_set.all().exists():
+            kolmikko = BestThree.objects.all()
     context = {'matches': matches, 'lohko': lohko, 'kuningas': kuningas, 'kolmikko': kolmikko, 'user': request.user}
     return render(request, template, context)
 

@@ -74,7 +74,7 @@ def vertaile(request):
     lohko = []
     kuningas = []
     kolmikko = []
-    if hasattr(request.user, gambler):
+    if hasattr(request.user, 'gambler'):
         if request.user.gambler.bet1x2_set.all().exists():
             matches = Match.objects.all()[:48]
             lohko = Bet1X2.objects.all()

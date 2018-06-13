@@ -130,7 +130,7 @@ class Gambler(models.Model):
         return points
 
     class Meta:
-        ordering = ["user.username"]
+        ordering = ["user"]
 
     def __str__(self):
         return self.user.username

@@ -87,3 +87,7 @@ def fake_data_load_matches():
                 match_query.update(**match_as_dict)
             else:
                 Match.objects.create(**match_as_dict)
+                
+if __name__=='__main__':
+    load_matches()
+    print('ok')

@@ -6,4 +6,3 @@ class Command(BaseCommand):
 
     def handle(self, **options):
         load_matches()
-        self.stdout.write(self.style.SUCCESS('OK'))

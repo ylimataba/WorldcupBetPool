@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Team, Match, Bet1X2, Group, GoalKingBet, Gambler
+from .models import Team, Match, Bet1X2, Group, GoalKingBet, Gambler, Score
 
 admin.site.register(Team)
 admin.site.register(Match)

@@ -50,6 +50,7 @@ def load_matches():
                     del match_as_dict['score']
                 match_query.update(**match_as_dict)
             else:
+                match_as_dict['score'].save()
                 Match.objects.create(**match_as_dict)
 
 def extract_match(fixture):
@@ -74,7 +75,7 @@ def extract_match(fixture):
     except:
         home = None
         away = None
-    score = Score.objects.create(home=home, away=away)
+    score = Score(home=home, away=away)
     return {'apiID': apiID, 'date': date, 'homeTeam': homeTeam, 'awayTeam': awayTeam, 'score': score}
 
 def fake_data_load_matches():
@@ -89,6 +90,11 @@ def fake_data_load_matches():
             match_as_dict = extract_match(fixture)
             match_query = Match.objects.filter(apiID=match_as_dict['apiID'])
             if match_query.exists():
+                for match in match_query:
+                    match.score.home = match_as_dict['score'].home
+                    match.score.away = match_as_dict['score'].away
+                    match.score.save()
+                    del match_as_dict['score']
                 match_query.update(**match_as_dict)
             else:
                 Match.objects.create(**match_as_dict)

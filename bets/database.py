@@ -44,8 +44,8 @@ def load_matches():
             match_query = Match.objects.filter(apiID=match_as_dict['apiID'])
             if match_query.exists():
                 for match in match_query:
-                    match.score.home = match_as_dict.score.home
-                    match.score.away = match_as_dict.score.away
+                    match.score.home = match_as_dict['score'].home
+                    match.score.away = match_as_dict['score'].away
                     match.score.save()
                     del match_as_dict['score']
                 match_query.update(**match_as_dict)

@@ -172,8 +172,8 @@ class GoalKingBet(models.Model):
 
     def getPoints(self):
         if self.goalKing == results['kuningas']:
-            return factors['kuningas']
-        return 0
+            return factors['kuningas'] * self.goalKing.goals
+        return self.goalKing.goals
 
     class Meta:
         ordering = ["gambler"]

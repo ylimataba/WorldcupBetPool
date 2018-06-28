@@ -20,7 +20,7 @@ Vertaile
                    Tulos:{% if match.hasScore %} {{ match.score.home }} - {{ match.score.away }} {% endif %}
                </div>
            </div>
-           {% for bet in lohko %}
+           {% for bet in pudotus %}
            {% if bet.match == match %}
            <div class="row bg-2">
                <div class="col-xs-4">
@@ -46,13 +46,11 @@ Vertaile
                 <div class="col-xs-6">
                     {{ bet.gambler.user.username }}
                 </div>
-                <div class="col-xs-2">
+                <div class="col-xs-6">
                     1.{{ bet.first.name }}
-                </div>
-                <div class="col-xs-2">
+                    <br />
                     2.{{ bet.second.name }}
-                </div>
-                <div class="col-xs-2">
+                    <br />
                     3.{{ bet.third.name }}
                 </div>
             </div>

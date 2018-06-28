@@ -34,6 +34,11 @@ Veikkaa
            </div>
            <div class="col-xs-2">
                vs
+               <br />
+               <select name="{{ match.id }}winner" >
+                   <option value="{{ match.homeTeam.id }}">{{ match.homeTeam.name }}</option>
+                   <option value="{{ match.awayTeam.id }}">{{ match.awayTeam.name }}</option>
+               </select>
            </div>
            <div class="col-xs-5">
                {{ match.awayTeam.name }}

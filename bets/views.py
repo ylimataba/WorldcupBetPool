@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.http import Http404
 from django.contrib.auth.decorators import login_required
-from .models import Match, Team, Bet1X2, Group, Player, GoalKingBet, Gambler, BestThree
+from .models import Match, Team, Bet1X2, Group, Player, GoalKingBet, Gambler, BestThree, Score, BetScore
 
 def index(request):
     template = 'bets/index.html'

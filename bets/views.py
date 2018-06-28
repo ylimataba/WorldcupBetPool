@@ -77,7 +77,7 @@ def pudotuspelit(request):
             home = request.POST.get(str(match.id)+"home")
             away = request.POST.get(str(match.id)+"away")
             winner = get_object_or_404(Team, id=request.POST.get(str(match.id)+"winner"))
-            if gambler.bet1x2_set.filter(match=match).exists():
+            if gambler.betscore_set.filter(match=match).exists():
                 bet = get_object_or_404(BetScore, match=match.id, gambler=gambler)
                 bet.score.home = home
                 bet.score.away = away

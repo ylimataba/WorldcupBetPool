@@ -151,7 +151,7 @@ class BetScore(models.Model):
         ordering = ["match", "gambler"]
 
     def __str__(self):
-        string = "{0} {1} {2}".format(self.match, self.gambler.user)
+        string = "{0} {1}".format(self.match, self.gambler.user)
         return string
 
 class Bet1X2(models.Model):

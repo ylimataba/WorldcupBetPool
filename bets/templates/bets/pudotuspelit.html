@@ -15,9 +15,7 @@ Veikkaa
            {{ match.date }}
        </div>
        <div class="row bg-2">
-           <div class"col-xs-2"></div>
-           <div class="col-xs-4">
-               <br />
+           <div class="col-xs-5">
                {{ match.homeTeam.name }}
                <br />
                <select name="{{ match.id }}home">
@@ -33,10 +31,11 @@ Veikkaa
                    <option value="9">9</option>
                    <option value="10">10</option>
                </select>
-               <br />
            </div>
-           <div class="col-xs-4">
-               <br />
+           <div class="col-xs-2">
+               vs
+           </div>
+           <div class="col-xs-5">
                {{ match.awayTeam.name }}
                <br />
                <select name="{{ match.id }}away">
@@ -53,16 +52,16 @@ Veikkaa
                    <option value="10">10</option>
                </select>
            </div>
-           <div class"col-xs-2"></div>
        </div>
        <div class="row bg-2">
-           <div class"col-xs-4"></div>
+           <div class="col-xs-4"></div>
+           <div class"col-xs-4">
                <select name="{{ match.id }}winner" >
                    <option value="{{ match.homeTeam.id }}">{{ match.homeTeam.name }}</option>
                    <option value="{{ match.awayTeam.id }}">{{ match.awayTeam.name }}</option>
                </select>
            </div>
-           <div class"col-xs-4"></div>
+           <div class="col-xs-4"></div>
        </div>
        {% endfor %}
         </div>

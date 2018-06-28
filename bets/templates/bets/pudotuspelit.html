@@ -11,6 +11,10 @@ Veikkaa
        <div class="container">
            <h1>Puolivälierät</h1>
        {% for match in matches %}
+       <div class"container bg-2">
+       <div class="row bg-2">
+           {{ match.date }}
+       </div>
        <div class="row bg-2">
            <div class="col-xs-4">
                <br />
@@ -56,6 +60,7 @@ Veikkaa
                <br />
                {{ match.awayTeam.name }}
            </div>
+       </div>
        </div>
        {% endfor %}
         </div>

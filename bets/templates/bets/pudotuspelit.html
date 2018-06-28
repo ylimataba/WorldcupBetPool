@@ -54,14 +54,10 @@ Veikkaa
            </div>
        </div>
        <div class="row bg-2">
-           <div class="col-xs-4"></div>
-           <div class"col-xs-4">
-               <select name="{{ match.id }}winner" >
-                   <option value="{{ match.homeTeam.id }}">{{ match.homeTeam.name }}</option>
-                   <option value="{{ match.awayTeam.id }}">{{ match.awayTeam.name }}</option>
-               </select>
-           </div>
-           <div class="col-xs-4"></div>
+           <select name="{{ match.id }}winner" >
+               <option value="{{ match.homeTeam.id }}">{{ match.homeTeam.name }}</option>
+               <option value="{{ match.awayTeam.id }}">{{ match.awayTeam.name }}</option>
+           </select>
        </div>
        {% endfor %}
         </div>

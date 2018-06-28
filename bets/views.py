@@ -97,20 +97,25 @@ def pudotuspelit(request):
 
 @login_required(login_url='/login')
 def vertaile(request):
-    template = 'bets/vertaile.html'
+    #template = 'bets/vertaile.html'
+    template = 'bets/vertaile_pudotus.html'
     matches = []
     lohko = []
     kuningas = []
     kolmikko = []
+    pudotus = []
     if hasattr(request.user, 'gambler'):
         if request.user.gambler.bet1x2_set.all().exists():
-            matches = Match.objects.all()[:48]
+            #matches = Match.objects.all()[:48]
             lohko = Bet1X2.objects.all()
         if request.user.gambler.goalkingbet_set.all().exists():
             kuningas = GoalKingBet.objects.all()
         if request.user.gambler.bestthree_set.all().exists():
             kolmikko = BestThree.objects.all()
-    context = {'matches': matches, 'lohko': lohko, 'kuningas': kuningas, 'kolmikko': kolmikko, 'user': request.user}
+        if request.user.gambler.betscore_set.all().exists():
+            matches = Match.objects.all()[48:56]
+            pudotus = BetScore.objects.all()
+    context = {'matches': matches, 'lohko': lohko, 'kuningas': kuningas, 'kolmikko': kolmikko, 'pudotus': pudotus, 'user': request.user}
     return render(request, template, context)
 
 def tilanne(request):

@@ -6,7 +6,7 @@ Vertaile
 
 {% block content %}
 <div class="container-fluid bg-1 text-center">
-        <h1>Lohkovaiheen pelit</h1>
+        <h1>Puolivälierät</h1>
         {% for match in matches %}
         <div class="container">
            <div class="row bg-2">
@@ -27,7 +27,9 @@ Vertaile
                    {{ bet.gambler.user.username }}
                </div>
                <div class="col-xs-4">
-                   Veikkaus: {{ bet.bet }}
+                   Veikkaus: {{ bet.score.home }} - {{ bet.score.away }}
+                   <br />
+                   {{ bet.winner.name }}
                </div>
                <div class="col-xs-4">
                    Pisteet:{% if match.hasScore %} {{ bet.getPoints }} {% endif %}

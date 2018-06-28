@@ -138,7 +138,7 @@ class Gambler(models.Model):
 class BetScore(models.Model):
     match = models.ForeignKey("Match", on_delete=models.CASCADE)
     score = models.ForeignKey("Score", on_delete=models.CASCADE)
-    winner = models.ForeignKey("Team", on_delete=models.CASCADE)
+    winner = models.ForeignKey("Team", on_delete=models.CASCADE, null=True)
     gambler = models.ForeignKey("Gambler", on_delete=models.CASCADE)
     
     def getPoints(self):

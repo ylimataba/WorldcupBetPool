@@ -79,6 +79,10 @@ class Score(models.Model):
     home = models.PositiveIntegerField(null=True)
     away = models.PositiveIntegerField(null=True)
 
+    def __str__(self):
+        string = "{0} - {1}".format(self.home, self.away)
+        return string
+
 class Match(models.Model):
     apiID = models.PositiveIntegerField()
     date = models.DateTimeField()

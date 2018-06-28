@@ -43,6 +43,12 @@ Veikkaa
                    <option value="9">9</option>
                    <option value="10">10</option>
                </select>
+               <br />
+               Voittaja: 
+               <select name="{{ match.id }}winner" >
+                   <option value="{{ match.homeTeam.id }}">{{ match.homeTeam.name }}</option>
+                   <option value="{{ match.awayTeam.id }}">{{ match.awayTeam.name }}</option>
+               </select>
            </div>
            <div class="col-xs-4">
                {{ match.awayTeam.name }}

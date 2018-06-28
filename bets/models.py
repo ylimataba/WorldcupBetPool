@@ -138,7 +138,8 @@ class Gambler(models.Model):
 class BetScore(models.Model):
     match = models.ForeignKey("Match", on_delete=models.CASCADE)
     score = models.ForeignKey("Score", on_delete=models.CASCADE)
-    gambler = models.ForeignKey(Gambler, on_delete=models.CASCADE)
+    winner = models.ForeignKey("Team", on_delete=models.CASCADE)
+    gambler = models.ForeignKey("Gambler", on_delete=models.CASCADE)
     
     def getPoints(self):
         if self.match.hasScore():
@@ -149,10 +150,14 @@ class BetScore(models.Model):
     class Meta:
         ordering = ["match", "gambler"]
 
+    def __str__(self):
+        string = "{0} {1} {2}".format(self.match, self.gambler.user)
+        return string
+
 class Bet1X2(models.Model):
     match = models.ForeignKey("Match", on_delete=models.CASCADE)
     bet = models.CharField(max_length=1)
-    gambler = models.ForeignKey(Gambler, on_delete=models.CASCADE)
+    gambler = models.ForeignKey("Gambler", on_delete=models.CASCADE)
 
     def getPoints(self):
         if self.match.get1X2() == self.bet:
@@ -168,7 +173,7 @@ class Bet1X2(models.Model):
 
 class GoalKingBet(models.Model):
     goalKing = models.ForeignKey("Player", on_delete=models.CASCADE)
-    gambler = models.ForeignKey(Gambler, on_delete=models.CASCADE)
+    gambler = models.ForeignKey("Gambler", on_delete=models.CASCADE)
 
     def getPoints(self):
         if self.goalKing == results['kuningas']:
@@ -186,7 +191,7 @@ class BestThree(models.Model):
     first = models.ForeignKey("Team", related_name="first", on_delete=models.CASCADE)
     second = models.ForeignKey("Team", related_name="second", on_delete=models.CASCADE)
     third = models.ForeignKey("Team", related_name="third", on_delete=models.CASCADE)
-    gambler = models.ForeignKey(Gambler, on_delete=models.CASCADE)
+    gambler = models.ForeignKey("Gambler", on_delete=models.CASCADE)
 
     def getPoints(self):
         return 0
@@ -196,3 +201,11 @@ class BestThree(models.Model):
 
     def __str__(self):
         return self.gambler.user.name
+
+class CompetitionPoints(models.Model):
+    gambler = models.ForeignKey("Gambler", on_delete=models.CASCADE)
+    points = models.PositiveIntegerField()
+
+    def __str__(self):
+        string = "{0} {1}".format(self.gambler.user.username, self.points)
+        return string

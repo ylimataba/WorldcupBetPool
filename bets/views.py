@@ -76,9 +76,17 @@ def pudotuspelit(request):
             match = match
             home = request.POST.get(str(match.id)+"home")
             away = request.POST.get(str(match.id)+"away")
-            score = Score.objects.create(home=home, away=away)
             winner = get_object_or_404(Team, id=request.POST.get(str(match.id)+"winner"))
-            BetScore.objects.create(match=match, score=score, winner=winner, gambler=gambler) 
+            if gambler.bet1x2_set.filter(match=match).exists():
+                bet = get_object_or_404(BetScore, match=match.id, gambler=gambler)
+                bet.score.home = home
+                bet.score.away = away
+                bet.score.save()
+                bet.winner = winner
+                bet.save()
+            else:
+                score = Score.objects.create(home=home, away=away)
+                BetScore.objects.create(match=match, score=score, winner=winner, gambler=gambler) 
         template = 'bets/ok.html'
         return render(request, template, {'user': request.user})
     else:

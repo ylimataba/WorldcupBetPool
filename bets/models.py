@@ -126,14 +126,12 @@ class Gambler(models.Model):
         points = 0
         for bet in self.bet1x2_set.all():
             points += bet.getPoints()
-        '''
         for bet in self.goalkingbet_set.all():
             points += bet.getPoints()
         for bet in self.bestthree_set.all():
             points += bet.getPoints()
         for bet in self.betscore_set.all():
             points += bet.getPoints()
-        '''
         return points
 
     class Meta:
@@ -156,7 +154,9 @@ class BetScore(models.Model):
         if self.match.score.winner:
             if self.match.score.winner == winner:
                 points += 1
-        return 0
+        if gambler.user.username == "Aamos":
+            points = points*3
+        return points
 
     class Meta:
         ordering = ["match", "gambler"]

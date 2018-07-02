@@ -154,7 +154,7 @@ class BetScore(models.Model):
         if self.match.score.winner:
             if self.match.score.winner == winner:
                 points += 1
-        if gambler.user.username == "Aamos":
+        if self.gambler.user.username == "Aamos":
             points = points*3
         return points
 

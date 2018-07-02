@@ -76,9 +76,9 @@ class Player(models.Model):
     
 
 class Score(models.Model):
-    home = models.PositiveIntegerField(null=True)
-    away = models.PositiveIntegerField(null=True)
-    winner = models.ForeignKey("Team", on_delete=models.CASCADE, null=True)
+    home = models.PositiveIntegerField(null=True, blank=True)
+    away = models.PositiveIntegerField(null=True, blank=True)
+    winner = models.ForeignKey("Team", on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
         string = "{0} - {1}".format(self.home, self.away)

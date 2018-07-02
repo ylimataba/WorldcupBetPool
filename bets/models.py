@@ -219,5 +219,5 @@ class CompetitionPoints(models.Model):
     competition = models.CharField(max_length=48, null=True)
 
     def __str__(self):
-        string = "{0} {1} {2}".format(self.gambler.user.username, self.points, self.competitions)
+        string = "{0} {1} {2}".format(self.gambler.user.username, self.points, self.competition)
         return string

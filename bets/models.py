@@ -126,12 +126,14 @@ class Gambler(models.Model):
         points = 0
         for bet in self.bet1x2_set.all():
             points += bet.getPoints()
+        '''
         for bet in self.goalkingbet_set.all():
             points += bet.getPoints()
         for bet in self.bestthree_set.all():
             points += bet.getPoints()
         for bet in self.betscore_set.all():
             points += bet.getPoints()
+        '''
         return points
 
     class Meta:

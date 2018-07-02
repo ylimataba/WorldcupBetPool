@@ -78,6 +78,7 @@ class Player(models.Model):
 class Score(models.Model):
     home = models.PositiveIntegerField(null=True)
     away = models.PositiveIntegerField(null=True)
+    winner = models.ForeignKey("Team", on_delete=models.CASCADE, null=True)
 
     def __str__(self):
         string = "{0} - {1}".format(self.home, self.away)
@@ -146,9 +147,12 @@ class BetScore(models.Model):
     gambler = models.ForeignKey("Gambler", on_delete=models.CASCADE)
     
     def getPoints(self):
+        points = 0
         if self.match.hasScore():
             if self.score.away == self.match.score.away and self.score.home == self.match.score.home:
-                return factors['tulos']
+                points += 2
+            if self.score.winner == winner:
+                points += 1
         return 0
 
     class Meta:
@@ -209,7 +213,8 @@ class BestThree(models.Model):
 class CompetitionPoints(models.Model):
     gambler = models.ForeignKey("Gambler", on_delete=models.CASCADE)
     points = models.PositiveIntegerField()
+    competition = models.CharField(max_length=48, null=True)
 
     def __str__(self):
-        string = "{0} {1}".format(self.gambler.user.username, self.points)
+        string = "{0} {1} {2}".format(self.gambler.user.username, self.points, self.competitions)
         return string

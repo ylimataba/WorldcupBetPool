@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Team, Match, Bet1X2, Group, GoalKingBet, Gambler, Score, Player, BetScore
+from .models import Team, Match, Bet1X2, Group, GoalKingBet, Gambler, Score, Player, BetScore, CompetitionPoints
 
 admin.site.register(Team)
 admin.site.register(Match)
@@ -10,3 +10,4 @@ admin.site.register(Gambler)
 admin.site.register(Score)
 admin.site.register(Player)
 admin.site.register(BetScore)
+admin.site.register(CompetitionPoints)

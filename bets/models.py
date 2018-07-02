@@ -151,9 +151,13 @@ class BetScore(models.Model):
         if self.match.hasScore():
             if self.score.away == self.match.score.away and self.score.home == self.match.score.home:
                 points += 2
-        if self.match.score.winner:
-            if self.match.score.winner == self.winner:
-                points += 1
+            tmp = self.match.get1X2()
+            if tmp == 'X':
+                if self.match.score.winner:
+                    if self.match.score.winner == self.winner:
+                        points += 1
+            elif (tmp == '1' and self.match.homeTeam == self.winner) or (tmp == '2' and self.match.awayTeam == self.winner):
+                    points += 1
         if self.gambler.user.username == "Aamos":
             points = points*3
         return points

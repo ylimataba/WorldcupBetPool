@@ -105,9 +105,9 @@ def vertaile(request):
     kolmikko = []
     pudotus = []
     if hasattr(request.user, 'gambler'):
-        if request.user.gambler.bet1x2_set.all().exists():
+        #if request.user.gambler.bet1x2_set.all().exists():
             #matches = Match.objects.all()[:48]
-            lohko = Bet1X2.objects.all()
+            #lohko = Bet1X2.objects.all()
         if request.user.gambler.goalkingbet_set.all().exists():
             kuningas = GoalKingBet.objects.all()
         if request.user.gambler.bestthree_set.all().exists():

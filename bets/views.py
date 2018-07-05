@@ -72,7 +72,7 @@ def pudotuspelit(request):
     user = request.user
     if request.method == 'POST' and hasattr(user, 'gambler'):
         gambler = user.gambler
-        for match in Match.objects.all()[48:56]:
+        for match in Match.objects.all()[56:60]:
             match = match
             home = request.POST.get(str(match.id)+"home")
             away = request.POST.get(str(match.id)+"away")
@@ -91,7 +91,7 @@ def pudotuspelit(request):
         return render(request, template, {'user': request.user})
     else:
         template = 'bets/pudotuspelit.html'
-        matches = Match.objects.all()[48:56]
+        matches = Match.objects.all()[56:60]
         context = {'matches': matches, 'user': request.user}
         return render(request, template, context)
 

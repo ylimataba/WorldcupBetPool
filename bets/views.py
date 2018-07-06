@@ -113,7 +113,7 @@ def vertaile(request):
         if request.user.gambler.bestthree_set.all().exists():
             kolmikko = BestThree.objects.all()
         if request.user.gambler.betscore_set.all().exists():
-            matches = Match.objects.all()[48:56]
+            matches = Match.objects.all()[56:60]
             pudotus = BetScore.objects.all()
     context = {'matches': matches, 'lohko': lohko, 'kuningas': kuningas, 'kolmikko': kolmikko, 'pudotus': pudotus, 'user': request.user}
     return render(request, template, context)

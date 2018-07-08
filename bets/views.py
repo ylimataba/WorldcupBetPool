@@ -121,7 +121,7 @@ def mitalipelit(request):
         template = 'bets/mitalipelit.html'
         matches = Match.objects.all()[62:64]
         finaali = matches[1]
-        pronssi = mathces[0]
+        pronssi = matches[0]
         context = {'finaali':finaali, 'pronssi':pronssi, 'user': request.user}
         return render(request, template, context)
 

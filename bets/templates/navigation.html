@@ -12,8 +12,6 @@
       <div class="collapse navbar-collapse" id="myNavbar">
         <ul class="nav navbar-nav navbar-right">
             <li><a href="{% url 'tilanne' %}">TILANNE</a></li>
-            <li><a href="{% url 'pudotuspelit' %}">VEIKKAA</a></li>
-            {% comment %}
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">VEIKKAA</a>
                 <div class="dropdown-menu navbar-inverse" aria-labelledby="navbarDropdown">
@@ -21,7 +19,6 @@
                     <a class="dropdown-item" href="{% url 'mitalipelit' %}">MITALIPELIT</a>
                 </div>
             </li>
-            {% endcomment %}
             <li><a href="{% url 'vertaile' %}">VERTAILE</a></li>
             {% if user.is_authenticated %}
             <li><a href="{% url 'logout' %}?next=/">LOGOUT</a></li>

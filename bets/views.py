@@ -72,7 +72,7 @@ def pudotuspelit(request):
     user = request.user
     if request.method == 'POST' and hasattr(user, 'gambler'):
         gambler = user.gambler
-        for match in Match.objects.all()[56:60]:
+        for match in Match.objects.all()[60:62]:
             match = match
             home = request.POST.get(str(match.id)+"home")
             away = request.POST.get(str(match.id)+"away")
@@ -91,8 +91,38 @@ def pudotuspelit(request):
         return render(request, template, {'user': request.user})
     else:
         template = 'bets/pudotuspelit.html'
-        matches = Match.objects.all()[56:60]
+        matches = Match.objects.all()[60:62]
         context = {'matches': matches, 'user': request.user}
+        return render(request, template, context)
+
+@login_required(login_url='/login')
+def mitalipelit(request):
+    user = request.user
+    if request.method == 'POST' and hasattr(user, 'gambler'):
+        gambler = user.gambler
+        for match in Match.objects.all()[62:64]:
+            match = match
+            home = request.POST.get(str(match.id)+"home")
+            away = request.POST.get(str(match.id)+"away")
+            winner = get_object_or_404(Team, id=request.POST.get(str(match.id)+"winner"))
+            if gambler.betscore_set.filter(match=match).exists():
+                bet = get_object_or_404(BetScore, match=match.id, gambler=gambler)
+                bet.score.home = home
+                bet.score.away = away
+                bet.score.save()
+                bet.winner = winner
+                bet.save()
+            else:
+                score = Score.objects.create(home=home, away=away)
+                BetScore.objects.create(match=match, score=score, winner=winner, gambler=gambler) 
+        template = 'bets/ok.html'
+        return render(request, template, {'user': request.user})
+    else:
+        template = 'bets/mitalipelit.html'
+        matches = Match.objects.all()[62:64]
+        finaali = matches[1]
+        pronssi = mathces[0]
+        context = {'finaali':finaali, 'pronssi':pronssi, 'user': request.user}
         return render(request, template, context)
 
 @login_required(login_url='/login')
@@ -113,9 +143,11 @@ def vertaile(request):
         if request.user.gambler.bestthree_set.all().exists():
             kolmikko = BestThree.objects.all()
         if request.user.gambler.betscore_set.all().exists():
-            matches = Match.objects.all()[56:60]
-            pudotus = BetScore.objects.all()
-    context = {'matches': matches, 'lohko': lohko, 'kuningas': kuningas, 'kolmikko': kolmikko, 'pudotus': pudotus, 'user': request.user}
+            matches = Match.objects.all()[60:64]
+            pudotus = BetScore.objects.filter(match__in=matches)
+    finaali = matches[3]
+    pronssi = matches[2]
+    context = {'semi': matches[:2], 'lohko': lohko, 'kuningas': kuningas, 'kolmikko': kolmikko, 'pudotus': pudotus, 'user': request.user, 'finaali':finaali, 'pronssi':pronssi}
     return render(request, template, context)
 
 def tilanne(request):

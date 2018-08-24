@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
-factors = {'lohko': 1, 'kuningas': 10, 'kolmikko': 10, 'tulos': 3}
-results = {'kuningas': None, 'voittaja': None, 'toinen': None, 'kolmas': None}
+factors = {'lohko': 1, 'kuningas': 2}
+results = {'kuningas': None, 'voittaja': "France", 'toinen': "Croatia", 'kolmas': "Belgium"}
 
 class Group(models.Model):
     name = models.CharField(max_length=10)
@@ -191,7 +191,8 @@ class GoalKingBet(models.Model):
     gambler = models.ForeignKey("Gambler", on_delete=models.CASCADE)
 
     def getPoints(self):
-        if self.goalKing == results['kuningas']:
+        king = Player.objects.get(name=results['kuningas'])
+        if self.goalKing == king:
             return factors['kuningas'] * self.goalKing.goals
         return self.goalKing.goals
 
@@ -209,7 +210,17 @@ class BestThree(models.Model):
     gambler = models.ForeignKey("Gambler", on_delete=models.CASCADE)
 
     def getPoints(self):
-        return 0
+        points = 0
+        gold = Team.objects.get(name=results['voittaja'])
+        silver = Team.objects.get(name=results['toinen'])
+        bronze = Team.objects.get(name=results['kolmas'])
+        if self.first == gold:
+            points += 5
+        if self.second == silver:
+            points += 3
+        if self.third == bronze:
+            points += 1
+        return points
 
     class Meta:
         ordering = ["gambler"]

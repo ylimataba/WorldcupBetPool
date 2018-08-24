@@ -9,7 +9,7 @@ def index(request):
     context = {}
     return render(request, template, context)
 
-@login_required(login_url='/login')
+#@login_required(login_url='/login')
 def lohkovaihe(request):
     user = request.user
     if request.method == 'POST' and hasattr(user, 'gambler'):
@@ -29,7 +29,7 @@ def lohkovaihe(request):
         context = {'groups': groups, 'user': request.user}
         return render(request, template, context)
 
-@login_required(login_url='/login')
+#@login_required(login_url='/login')
 def maalikuningas(request):
     user = request.user
     if request.method == 'POST' and hasattr(user, 'gambler'):
@@ -47,7 +47,7 @@ def maalikuningas(request):
         context = {'players': players, 'user': request.user}
         return render(request, template, context)
 
-@login_required(login_url='/login')
+#@login_required(login_url='/login')
 def kolmikko(request):
     user = request.user
     if request.method == 'POST' and hasattr(user, 'gambler'):
@@ -67,7 +67,7 @@ def kolmikko(request):
         context = {'teams': teams, 'user': request.user}
         return render(request, template, context)
 
-@login_required(login_url='/login')
+#@login_required(login_url='/login')
 def pudotuspelit(request):
     user = request.user
     if request.method == 'POST' and hasattr(user, 'gambler'):
@@ -95,7 +95,7 @@ def pudotuspelit(request):
         context = {'matches': matches, 'user': request.user}
         return render(request, template, context)
 
-@login_required(login_url='/login')
+#@login_required(login_url='/login')
 def mitalipelit(request):
     user = request.user
     if request.method == 'POST' and hasattr(user, 'gambler'):
@@ -125,7 +125,7 @@ def mitalipelit(request):
         context = {'finaali':finaali, 'pronssi':pronssi, 'user': request.user}
         return render(request, template, context)
 
-@login_required(login_url='/login')
+#@login_required(login_url='/login')
 def vertaile(request):
     #template = 'bets/vertaile.html'
     template = 'bets/vertaile_pudotus.html'

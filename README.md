@@ -6,4 +6,6 @@ database.py utilizes https://www.football-data.org API to load information about
 Matches can be updated with `python manage.py loadmatches.`
 I used heroku scheduler to run that command every 10 minutes for automatic score update.
 
-The site has lot to improve performance wise but it works. I'm planning on improving it before Euro 2020.
+The site has lot to improve performance wise but it worked well for our purposes. I'm planning on improving it before Euro 2020.
+
+One thing I'm dissapointed in is that I lost to my girlfriend's father by one point.

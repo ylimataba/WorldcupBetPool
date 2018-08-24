@@ -134,17 +134,12 @@ def vertaile(request):
     kuningas = []
     kolmikko = []
     pudotus = []
-    if hasattr(request.user, 'gambler'):
-        #if request.user.gambler.bet1x2_set.all().exists():
-            #matches = Match.objects.all()[:48]
-            #lohko = Bet1X2.objects.all()
-        if request.user.gambler.goalkingbet_set.all().exists():
-            kuningas = GoalKingBet.objects.all()
-        if request.user.gambler.bestthree_set.all().exists():
-            kolmikko = BestThree.objects.all()
-        if request.user.gambler.betscore_set.all().exists():
-            matches = Match.objects.all()[60:64]
-            pudotus = BetScore.objects.filter(match__in=matches)
+    #matches = Match.objects.all()[:48]
+    #lohko = Bet1X2.objects.all()
+    kuningas = GoalKingBet.objects.all()
+    kolmikko = BestThree.objects.all()
+    matches = Match.objects.all()[60:64]
+    pudotus = BetScore.objects.filter(match__in=matches)
     finaali = matches[3]
     pronssi = matches[2]
     context = {'semi': matches[:2], 'lohko': lohko, 'kuningas': kuningas, 'kolmikko': kolmikko, 'pudotus': pudotus, 'user': request.user, 'finaali':finaali, 'pronssi':pronssi}

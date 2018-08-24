@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 
 factors = {'lohko': 1, 'kuningas': 2}
-results = {'kuningas': None, 'voittaja': "France", 'toinen': "Croatia", 'kolmas': "Belgium"}
+results = {'kuningas': "Cristiano Ronaldo", 'voittaja': "France", 'toinen': "Croatia", 'kolmas': "Belgium"}
 
 class Group(models.Model):
     name = models.CharField(max_length=10)
